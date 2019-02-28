@@ -11,7 +11,13 @@ export default class Timeline extends Component {
   }
 
   componentDidMount() {
-    fetch('https://storage.googleapis.com/dito-questions/events.json')
+    fetch('https://storage.googleapis.com/dito-questions/events.json', {
+      method: "GET",
+      headers: {
+        "access-control-allow-origin": "*",
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
       .then(res => res.json())
       .then(json => {
         this.setState({
@@ -29,7 +35,7 @@ export default class Timeline extends Component {
   filterTransactions = (obj) => {
     let newObj = obj.filter(function (el) {
       return el.event === "comprou"
-    }).sort(function(a, b) {
+    }).sort(function (a, b) {
       return new Date(a.timestamp) - new Date(b.timestamp);
     });
 
@@ -67,50 +73,50 @@ export default class Timeline extends Component {
   render() {
     var { items } = this.state;
     return (
-        <ul className="timeline">
-          {
-            this.filterTransactions(items).map((item, i) => {
-              return (
-                <li className="timeline-left" key={i}>
-                  <div className="timeline-badge">
-                    <img src="assets/check.svg" alt="check" />
+      <ul className="timeline">
+        {
+          this.filterTransactions(items).map((item, i) => {
+            return (
+              <li className="timeline-left" key={i}>
+                <div className="timeline-badge">
+                  <img src="assets/check.svg" alt="check" />
+                </div>
+                <div className="timeline-panel">
+                  <div className="timeline-heading">
+                    <div><img src="assets/calendar.svg" alt="calendar" /> {new Intl.DateTimeFormat('pt-br').format(new Date(item.date))}</div>
+                    <div><img src="assets/clock.svg" alt="clock" /> {new Intl.DateTimeFormat('pt-br', { hour: 'numeric', minute: 'numeric' }).format(new Date(item.date))}</div>
+                    <div><img src="assets/place.svg" alt="place" /> {item.store}</div>
+                    <div><img src="assets/money.svg" alt="money" /> {new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(item.revenue)}</div>
                   </div>
-                  <div className="timeline-panel">
-                    <div className="timeline-heading">
-                      <div><img src="assets/calendar.svg" alt="calendar" /> {new Intl.DateTimeFormat('pt-br').format(new Date(item.date))}</div>
-                      <div><img src="assets/clock.svg" alt="clock" /> {new Intl.DateTimeFormat('pt-br', { hour: 'numeric', minute: 'numeric' }).format(new Date(item.date))}</div>
-                      <div><img src="assets/place.svg" alt="place" /> {item.store}</div>
-                      <div><img src="assets/money.svg" alt="money" /> {new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(item.revenue)}</div>
-                    </div>
-                    <div className="timeline-body">
-                      <table className="table-item">
-                        <thead>
-                          <tr>
-                            <th className="product-description">Produto</th>
-                            <th>Preço</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {
-                            this.filterProducts(items, item.transaction).map((item, i) => {
-                              return (
-                                <tr key={i}>
-                                  <td>{item.name}</td>
-                                  <td>{new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(item.price)}</td>
-                                </tr>
-                              );
-                            })
-                          }
-                        </tbody>
-                      </table>
+                  <div className="timeline-body">
+                    <table className="table-item">
+                      <thead>
+                        <tr>
+                          <th className="product-description">Produto</th>
+                          <th>Preço</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {
+                          this.filterProducts(items, item.transaction).map((item, i) => {
+                            return (
+                              <tr key={i}>
+                                <td>{item.name}</td>
+                                <td>{new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(item.price)}</td>
+                              </tr>
+                            );
+                          })
+                        }
+                      </tbody>
+                    </table>
 
-                    </div>
                   </div>
-                </li>
-              )
-            })
-          }
-        </ul>
+                </div>
+              </li>
+            )
+          })
+        }
+      </ul>
     )
   }
 }
