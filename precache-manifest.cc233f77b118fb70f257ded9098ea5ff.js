@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "22792c808fc355157599",
+    "revision": "f6eca9a5378b7d252f15",
     "url": "/desafio-dito/static/css/main.6a9abed1.chunk.css"
   },
   {
-    "revision": "22792c808fc355157599",
-    "url": "/desafio-dito/static/js/main.22792c80.chunk.js"
+    "revision": "f6eca9a5378b7d252f15",
+    "url": "/desafio-dito/static/js/main.f6eca9a5.chunk.js"
   },
   {
     "revision": "184231516c57502243d4",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/desafio-dito/static/js/2.5ec21d73.chunk.js"
   },
   {
-    "revision": "a8c725dd0559601e74a35235843a0e9b",
+    "revision": "903aaa57f9f8554df988e5829e81ff15",
     "url": "/desafio-dito/index.html"
   }
 ];
