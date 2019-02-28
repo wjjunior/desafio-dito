@@ -29,6 +29,8 @@ export default class Timeline extends Component {
   filterTransactions = (obj) => {
     let newObj = obj.filter(function (el) {
       return el.event === "comprou"
+    }).sort(function(a, b) {
+      return new Date(a.timestamp) - new Date(b.timestamp);
     });
 
     let transactions = [];
