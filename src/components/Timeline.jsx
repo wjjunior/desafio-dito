@@ -11,13 +11,9 @@ export default class Timeline extends Component {
   }
 
   componentDidMount() {
-    fetch('https://storage.googleapis.com/dito-questions/events.json', {
-      method: "GET",
-      headers: {
-        "access-control-allow-origin": "*",
-        "Content-type": "application/json; charset=UTF-8"
-      }
-    })
+    var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+    targetUrl = 'https://storage.googleapis.com/dito-questions/events.json'
+    fetch(proxyUrl + targetUrl)
       .then(res => res.json())
       .then(json => {
         this.setState({
