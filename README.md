@@ -7,6 +7,12 @@ Autor: Wagner Junior
 O objetivo é criar uma timeline de compras a partir dos eventos disponíveis neste
 endpoint: https://storage.googleapis.com/dito-questions/events.json.
 
+# Utilizando
+React
+Javascript
+SCSS
+
+
 # Execução
 
 git clone 
